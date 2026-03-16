@@ -90,7 +90,7 @@ export default function DashboardPage() {
           <div className="list">
             {recentAlerts.length ? (
               recentAlerts.map((alert) => (
-                <div className="list-row" key={alert._id}>
+                <div className="list-row" key={alert.id}>
                   <div className="list-row-top">
                     <span className="row-title">
                       {alert.triggerType} trigger
@@ -98,7 +98,7 @@ export default function DashboardPage() {
                     <StatusBadge value={alert.status} />
                   </div>
                   <div className="row-meta">
-                    {alert.userId?.name || "Unknown user"} at {alert.latitude},{" "}
+                    {alert.userId || "Unknown user"} at {alert.latitude},{" "}
                     {alert.longitude}
                   </div>
                 </div>

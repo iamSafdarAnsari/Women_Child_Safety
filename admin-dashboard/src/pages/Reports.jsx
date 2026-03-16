@@ -55,7 +55,7 @@ export default function ReportsPage() {
           {!error && reports.length ? (
             <div className="list">
               {reports.slice(0, 8).map((report) => (
-                <div className="list-row" key={report._id}>
+                <div className="list-row" key={report.id}>
                   <div className="list-row-top">
                     <span className="row-title">{report.type}</span>
                     <span className="muted">
@@ -66,7 +66,7 @@ export default function ReportsPage() {
                   </div>
                   <div className="row-meta">{report.description}</div>
                   <div className="row-meta">
-                    {report.location?.address || "No address provided"}
+                    Coordinates: {report.latitude}, {report.longitude}
                   </div>
                 </div>
               ))}

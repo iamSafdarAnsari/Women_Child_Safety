@@ -1,0 +1,38 @@
+[
+  {
+    "id": "j4",
+    "userId": "u2",
+    "startLocation": "Rajiv Chowk Metro",
+    "destination": "India Gate",
+    "startTime": "2026-03-16T16:15:04.637Z",
+    "expectedArrival": "2026-03-16T19:30:00",
+    "status": "ongoing"
+  },
+  {
+    "id": "j1",
+    "userId": "u3",
+    "startLocation": "Lajpat Nagar Metro",
+    "destination": "India Gate",
+    "startTime": "2026-03-15T18:10:00",
+    "expectedArrival": "2026-03-15T18:45:00",
+    "status": "completed"
+  },
+  {
+    "id": "j2",
+    "userId": "u6",
+    "startLocation": "Saket Mall",
+    "destination": "Hauz Khas Village",
+    "startTime": "2026-03-15T20:00:00",
+    "expectedArrival": "2026-03-15T20:35:00",
+    "status": "ongoing"
+  },
+  {
+    "id": "j3",
+    "userId": "u9",
+    "startLocation": "Rajiv Chowk",
+    "destination": "Karol Bagh",
+    "startTime": "2026-03-14T17:45:00",
+    "expectedArrival": "2026-03-14T18:20:00",
+    "status": "completed"
+  }
+]

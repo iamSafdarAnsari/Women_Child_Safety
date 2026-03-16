@@ -1,0 +1,461 @@
+[
+  {
+    "id": "r51",
+    "type": "unsafe_road",
+    "latitude": 28.62,
+    "longitude": 77.21,
+    "description": "Demo: Broken pavement near market",
+    "riskLevel": "low",
+    "timestamp": "2026-03-16T16:15:40.702Z"
+  },
+  {
+    "id": "r1",
+    "type": "harassment",
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "description": "Street harassment reported near bus stand",
+    "riskLevel": "high",
+    "timestamp": "2026-01-10T20:10:00"
+  },
+  {
+    "id": "r2",
+    "type": "unsafe_road",
+    "latitude": 28.6162,
+    "longitude": 77.2064,
+    "description": "Poor street lighting after 9 PM",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-11T21:05:00"
+  },
+  {
+    "id": "r3",
+    "type": "suspicious_activity",
+    "latitude": 28.6111,
+    "longitude": 77.2149,
+    "description": "Unknown group following pedestrians",
+    "riskLevel": "high",
+    "timestamp": "2026-01-12T19:40:00"
+  },
+  {
+    "id": "r4",
+    "type": "theft",
+    "latitude": 28.6078,
+    "longitude": 77.2023,
+    "description": "Mobile phone snatching incident",
+    "riskLevel": "high",
+    "timestamp": "2026-01-13T18:12:00"
+  },
+  {
+    "id": "r5",
+    "type": "harassment",
+    "latitude": 28.6204,
+    "longitude": 77.2157,
+    "description": "Verbal harassment near market lane",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-14T20:55:00"
+  },
+  {
+    "id": "r6",
+    "type": "unsafe_road",
+    "latitude": 28.5982,
+    "longitude": 77.2284,
+    "description": "Broken pavement and dark alley",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-15T22:08:00"
+  },
+  {
+    "id": "r7",
+    "type": "suspicious_activity",
+    "latitude": 28.6045,
+    "longitude": 77.2173,
+    "description": "Suspicious vehicle parked repeatedly",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-16T23:14:00"
+  },
+  {
+    "id": "r8",
+    "type": "theft",
+    "latitude": 28.6263,
+    "longitude": 77.2237,
+    "description": "Bag theft reported near metro exit",
+    "riskLevel": "high",
+    "timestamp": "2026-01-17T19:20:00"
+  },
+  {
+    "id": "r9",
+    "type": "harassment",
+    "latitude": 28.6294,
+    "longitude": 77.2085,
+    "description": "Catcalling incident near taxi stand",
+    "riskLevel": "high",
+    "timestamp": "2026-01-18T21:33:00"
+  },
+  {
+    "id": "r10",
+    "type": "unsafe_road",
+    "latitude": 28.5917,
+    "longitude": 77.2341,
+    "description": "No lighting and stray crowding",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-19T20:16:00"
+  },
+  {
+    "id": "r11",
+    "type": "suspicious_activity",
+    "latitude": 28.6002,
+    "longitude": 77.2008,
+    "description": "Repeated stalking complaint",
+    "riskLevel": "high",
+    "timestamp": "2026-01-20T22:50:00"
+  },
+  {
+    "id": "r12",
+    "type": "theft",
+    "latitude": 28.6177,
+    "longitude": 77.1956,
+    "description": "Purse stolen at crowded crossing",
+    "riskLevel": "high",
+    "timestamp": "2026-01-21T18:34:00"
+  },
+  {
+    "id": "r13",
+    "type": "harassment",
+    "latitude": 28.6352,
+    "longitude": 77.2148,
+    "description": "Harassment complaint near food street",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-22T20:42:00"
+  },
+  {
+    "id": "r14",
+    "type": "unsafe_road",
+    "latitude": 28.6089,
+    "longitude": 77.2299,
+    "description": "Underpass feels unsafe at night",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-23T21:18:00"
+  },
+  {
+    "id": "r15",
+    "type": "suspicious_activity",
+    "latitude": 28.6248,
+    "longitude": 77.2025,
+    "description": "Suspicious loitering near school gate",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-24T19:27:00"
+  },
+  {
+    "id": "r16",
+    "type": "theft",
+    "latitude": 28.6122,
+    "longitude": 77.2188,
+    "description": "Bike theft in parking area",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-25T17:49:00"
+  },
+  {
+    "id": "r17",
+    "type": "harassment",
+    "latitude": 28.5964,
+    "longitude": 77.2104,
+    "description": "Harassment near college gate",
+    "riskLevel": "high",
+    "timestamp": "2026-01-26T18:57:00"
+  },
+  {
+    "id": "r18",
+    "type": "unsafe_road",
+    "latitude": 28.6321,
+    "longitude": 77.2272,
+    "description": "Damaged road and no police presence",
+    "riskLevel": "low",
+    "timestamp": "2026-01-27T20:05:00"
+  },
+  {
+    "id": "r19",
+    "type": "suspicious_activity",
+    "latitude": 28.5898,
+    "longitude": 77.2215,
+    "description": "Repeated suspicious calls near kiosk",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-28T21:39:00"
+  },
+  {
+    "id": "r20",
+    "type": "theft",
+    "latitude": 28.6148,
+    "longitude": 77.2326,
+    "description": "Jewelry snatching near signal",
+    "riskLevel": "high",
+    "timestamp": "2026-01-29T19:59:00"
+  },
+  {
+    "id": "r21",
+    "type": "harassment",
+    "latitude": 28.6216,
+    "longitude": 77.2124,
+    "description": "Harassment in shared transport",
+    "riskLevel": "high",
+    "timestamp": "2026-01-30T22:15:00"
+  },
+  {
+    "id": "r22",
+    "type": "unsafe_road",
+    "latitude": 28.6037,
+    "longitude": 77.2362,
+    "description": "Unsafe isolated stretch near park",
+    "riskLevel": "medium",
+    "timestamp": "2026-01-31T20:41:00"
+  },
+  {
+    "id": "r23",
+    "type": "suspicious_activity",
+    "latitude": 28.6185,
+    "longitude": 77.2042,
+    "description": "Suspicious men circling area",
+    "riskLevel": "high",
+    "timestamp": "2026-02-01T21:07:00"
+  },
+  {
+    "id": "r24",
+    "type": "theft",
+    "latitude": 28.6071,
+    "longitude": 77.2194,
+    "description": "Wallet theft in crowded market",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-02T18:18:00"
+  },
+  {
+    "id": "r25",
+    "type": "harassment",
+    "latitude": 28.5952,
+    "longitude": 77.2248,
+    "description": "Harassment near evening tuition center",
+    "riskLevel": "high",
+    "timestamp": "2026-02-03T19:24:00"
+  },
+  {
+    "id": "r26",
+    "type": "unsafe_road",
+    "latitude": 28.6334,
+    "longitude": 77.2051,
+    "description": "Very low visibility and broken lights",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-04T22:02:00"
+  },
+  {
+    "id": "r27",
+    "type": "suspicious_activity",
+    "latitude": 28.6117,
+    "longitude": 77.2391,
+    "description": "Suspicious movement around ATM",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-05T20:33:00"
+  },
+  {
+    "id": "r28",
+    "type": "theft",
+    "latitude": 28.6268,
+    "longitude": 77.1987,
+    "description": "Handbag snatched near lane crossing",
+    "riskLevel": "high",
+    "timestamp": "2026-02-06T18:11:00"
+  },
+  {
+    "id": "r29",
+    "type": "harassment",
+    "latitude": 28.6016,
+    "longitude": 77.2135,
+    "description": "Persistent harassment near bus queue",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-07T21:26:00"
+  },
+  {
+    "id": "r30",
+    "type": "unsafe_road",
+    "latitude": 28.6197,
+    "longitude": 77.2304,
+    "description": "Blind turn with no patrol",
+    "riskLevel": "low",
+    "timestamp": "2026-02-08T20:48:00"
+  },
+  {
+    "id": "r31",
+    "type": "suspicious_activity",
+    "latitude": 28.5879,
+    "longitude": 77.2097,
+    "description": "Suspicious vehicle tracking pedestrians",
+    "riskLevel": "high",
+    "timestamp": "2026-02-09T22:20:00"
+  },
+  {
+    "id": "r32",
+    "type": "theft",
+    "latitude": 28.6299,
+    "longitude": 77.2168,
+    "description": "Chain snatching near crossing",
+    "riskLevel": "high",
+    "timestamp": "2026-02-10T19:12:00"
+  },
+  {
+    "id": "r33",
+    "type": "harassment",
+    "latitude": 28.6083,
+    "longitude": 77.2075,
+    "description": "Harassment report near PG block",
+    "riskLevel": "high",
+    "timestamp": "2026-02-11T20:15:00"
+  },
+  {
+    "id": "r34",
+    "type": "unsafe_road",
+    "latitude": 28.6159,
+    "longitude": 77.2241,
+    "description": "Dark footbridge with poor visibility",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-12T21:52:00"
+  },
+  {
+    "id": "r35",
+    "type": "suspicious_activity",
+    "latitude": 28.6041,
+    "longitude": 77.2313,
+    "description": "Group intimidating commuters",
+    "riskLevel": "high",
+    "timestamp": "2026-02-13T22:06:00"
+  },
+  {
+    "id": "r36",
+    "type": "theft",
+    "latitude": 28.5946,
+    "longitude": 77.2171,
+    "description": "Theft reported at bus terminal",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-14T18:44:00"
+  },
+  {
+    "id": "r37",
+    "type": "harassment",
+    "latitude": 28.6232,
+    "longitude": 77.2112,
+    "description": "Harassment complaint near office lane",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-15T19:55:00"
+  },
+  {
+    "id": "r38",
+    "type": "unsafe_road",
+    "latitude": 28.5978,
+    "longitude": 77.2034,
+    "description": "Unsafe empty stretch at night",
+    "riskLevel": "low",
+    "timestamp": "2026-02-16T23:09:00"
+  },
+  {
+    "id": "r39",
+    "type": "suspicious_activity",
+    "latitude": 28.6181,
+    "longitude": 77.2384,
+    "description": "Unknown person photographing commuters",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-17T20:40:00"
+  },
+  {
+    "id": "r40",
+    "type": "theft",
+    "latitude": 28.6104,
+    "longitude": 77.1998,
+    "description": "Laptop stolen from shared cab",
+    "riskLevel": "high",
+    "timestamp": "2026-02-18T18:35:00"
+  },
+  {
+    "id": "r41",
+    "type": "harassment",
+    "latitude": 28.6316,
+    "longitude": 77.2223,
+    "description": "Harassment in crowded bazaar",
+    "riskLevel": "high",
+    "timestamp": "2026-02-19T21:18:00"
+  },
+  {
+    "id": "r42",
+    "type": "unsafe_road",
+    "latitude": 28.5909,
+    "longitude": 77.2144,
+    "description": "Streetlights not functioning",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-20T20:11:00"
+  },
+  {
+    "id": "r43",
+    "type": "suspicious_activity",
+    "latitude": 28.6067,
+    "longitude": 77.2257,
+    "description": "Suspicious waiting near hostel",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-21T22:38:00"
+  },
+  {
+    "id": "r44",
+    "type": "theft",
+    "latitude": 28.6241,
+    "longitude": 77.2078,
+    "description": "Phone theft near metro stairs",
+    "riskLevel": "high",
+    "timestamp": "2026-02-22T19:22:00"
+  },
+  {
+    "id": "r45",
+    "type": "harassment",
+    "latitude": 28.6023,
+    "longitude": 77.2181,
+    "description": "Harassment report from auto stand",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-23T20:17:00"
+  },
+  {
+    "id": "r46",
+    "type": "unsafe_road",
+    "latitude": 28.6168,
+    "longitude": 77.2338,
+    "description": "Unsafe under-construction path",
+    "riskLevel": "low",
+    "timestamp": "2026-02-24T21:30:00"
+  },
+  {
+    "id": "r47",
+    "type": "suspicious_activity",
+    "latitude": 28.5934,
+    "longitude": 77.2291,
+    "description": "Suspicious person chasing commuters",
+    "riskLevel": "high",
+    "timestamp": "2026-02-25T22:57:00"
+  },
+  {
+    "id": "r48",
+    "type": "theft",
+    "latitude": 28.6209,
+    "longitude": 77.2019,
+    "description": "Theft from parked two-wheeler",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-26T19:05:00"
+  },
+  {
+    "id": "r49",
+    "type": "harassment",
+    "latitude": 28.6074,
+    "longitude": 77.2129,
+    "description": "Repeated harassment near tuition lane",
+    "riskLevel": "high",
+    "timestamp": "2026-02-27T20:43:00"
+  },
+  {
+    "id": "r50",
+    "type": "unsafe_road",
+    "latitude": 28.6287,
+    "longitude": 77.2296,
+    "description": "Dimly lit shortcut with no surveillance",
+    "riskLevel": "medium",
+    "timestamp": "2026-02-28T22:10:00"
+  }
+]

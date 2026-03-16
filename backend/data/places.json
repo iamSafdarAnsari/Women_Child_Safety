@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Parliament Street Police Station",
+    "latitude": 28.6255,
+    "longitude": 77.2142
+  },
+  {
+    "name": "Connaught Place Police Post",
+    "latitude": 28.6328,
+    "longitude": 77.2197
+  },
+  { "name": "AIIMS Hospital", "latitude": 28.5672, "longitude": 77.21 },
+  {
+    "name": "Ram Manohar Lohia Hospital",
+    "latitude": 28.6243,
+    "longitude": 77.1994
+  },
+  {
+    "name": "Women Help Safe Zone - India Gate",
+    "latitude": 28.6129,
+    "longitude": 77.2295
+  },
+  {
+    "name": "Women Help Safe Zone - Lodhi Garden",
+    "latitude": 28.5931,
+    "longitude": 77.2196
+  }
+]

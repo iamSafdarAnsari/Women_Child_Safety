@@ -9,44 +9,17 @@ import {
 } from "react-native";
 
 import MapComponent, { defaultRegion } from "../components/MapComponent";
-import { defaultBaseUrl, fetchSafetyReports } from "../services/reportService";
+import {
+  defaultBaseUrl,
+  fetchHeatmapReports,
+  fetchSafetyReports,
+} from "../services/reportService";
 import { colors, screenStyles, spacing } from "../utils/theme";
 
 const riskConfig = {
-  safe: { label: "Safe", color: "#16a34a" },
+  low: { label: "Low risk", color: "#16a34a" },
   medium: { label: "Medium risk", color: "#facc15" },
   high: { label: "High risk", color: "#dc2626" },
-};
-
-const distanceThreshold = 0.008;
-
-const getNearbyReportCount = (reports, currentReport) => {
-  return reports.filter((report) => {
-    const latitudeGap = Math.abs(
-      report.location.latitude - currentReport.location.latitude,
-    );
-    const longitudeGap = Math.abs(
-      report.location.longitude - currentReport.location.longitude,
-    );
-
-    return (
-      latitudeGap <= distanceThreshold && longitudeGap <= distanceThreshold
-    );
-  }).length;
-};
-
-const getRiskLevel = (reports, report) => {
-  const nearbyReportCount = getNearbyReportCount(reports, report);
-
-  if (nearbyReportCount >= 3 || report.type === "harassment") {
-    return "high";
-  }
-
-  if (nearbyReportCount >= 2 || report.type === "suspicious activity") {
-    return "medium";
-  }
-
-  return "safe";
 };
 
 const buildRegion = (reports) => {
@@ -54,8 +27,8 @@ const buildRegion = (reports) => {
     return defaultRegion;
   }
 
-  const latitudes = reports.map((report) => report.location.latitude);
-  const longitudes = reports.map((report) => report.location.longitude);
+  const latitudes = reports.map((report) => report.latitude);
+  const longitudes = reports.map((report) => report.longitude);
   const minLatitude = Math.min(...latitudes);
   const maxLatitude = Math.max(...latitudes);
   const minLongitude = Math.min(...longitudes);
@@ -81,7 +54,10 @@ export default function HeatmapScreen() {
     const loadReports = async () => {
       try {
         setErrorMessage("");
-        const apiReports = await fetchSafetyReports();
+        const [apiReports, apiHeatmap] = await Promise.all([
+          fetchSafetyReports(),
+          fetchHeatmapReports(),
+        ]);
 
         if (!isMounted) {
           return;
@@ -89,28 +65,30 @@ export default function HeatmapScreen() {
 
         const validReports = apiReports.filter(
           (report) =>
-            report.location &&
-            typeof report.location.latitude === "number" &&
-            typeof report.location.longitude === "number",
+            typeof report.latitude === "number" &&
+            typeof report.longitude === "number",
         );
 
+        const heatmapById = new Map(apiHeatmap.map((item) => [item.id, item]));
+
         const normalizedReports = validReports.map((report) => {
-          const riskLevel = getRiskLevel(validReports, report);
+          const heatmapPoint = heatmapById.get(report.id);
+          const riskLevel =
+            heatmapPoint?.riskLevel || report.riskLevel || "medium";
 
           return {
-            id: report._id,
+            id: report.id,
             title: report.type,
             description: report.description,
-            latitude: report.location.latitude,
-            longitude: report.location.longitude,
-            address: report.location.address,
+            latitude: report.latitude,
+            longitude: report.longitude,
             timestamp: report.timestamp,
-            reporterName: report.userId?.name,
             riskLevel,
             riskLabel: riskConfig[riskLevel].label,
             color: riskConfig[riskLevel].color,
             intensity:
-              riskLevel === "high" ? 1 : riskLevel === "medium" ? 0.6 : 0.25,
+              heatmapPoint?.weight ||
+              (riskLevel === "high" ? 1 : riskLevel === "medium" ? 0.65 : 0.3),
           };
         });
 
@@ -123,7 +101,7 @@ export default function HeatmapScreen() {
 
         setErrorMessage(
           error.response?.data?.message ||
-            `Unable to load safety reports from ${defaultBaseUrl}/api/reports/list`,
+            `Unable to load safety reports from ${defaultBaseUrl}/api/reports`,
         );
       } finally {
         if (isMounted) {
@@ -139,14 +117,7 @@ export default function HeatmapScreen() {
     };
   }, []);
 
-  const region = buildRegion(
-    reports.map((report) => ({
-      location: {
-        latitude: report.latitude,
-        longitude: report.longitude,
-      },
-    })),
-  );
+  const region = buildRegion(reports);
 
   const heatmapPoints = reports.map((report) => ({
     latitude: report.latitude,
@@ -229,16 +200,6 @@ export default function HeatmapScreen() {
                 </View>
               </View>
               <Text style={styles.body}>{selectedReport.description}</Text>
-              {selectedReport.address ? (
-                <Text style={styles.meta}>
-                  Location: {selectedReport.address}
-                </Text>
-              ) : null}
-              {selectedReport.reporterName ? (
-                <Text style={styles.meta}>
-                  Reported by: {selectedReport.reporterName}
-                </Text>
-              ) : null}
               <Text style={styles.meta}>
                 Coordinates: {selectedReport.latitude.toFixed(5)},{" "}
                 {selectedReport.longitude.toFixed(5)}

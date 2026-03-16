@@ -1,0 +1,62 @@
+[
+  {
+    "id": "u1",
+    "name": "Aarohi Sharma",
+    "email": "aarohi.sharma@example.com",
+    "phone": "+91-9876501001"
+  },
+  {
+    "id": "u2",
+    "name": "Meera Singh",
+    "email": "meera.singh@example.com",
+    "phone": "+91-9876501002"
+  },
+  {
+    "id": "u3",
+    "name": "Riya Verma",
+    "email": "riya.verma@example.com",
+    "phone": "+91-9876501003"
+  },
+  {
+    "id": "u4",
+    "name": "Pooja Nair",
+    "email": "pooja.nair@example.com",
+    "phone": "+91-9876501004"
+  },
+  {
+    "id": "u5",
+    "name": "Sana Khan",
+    "email": "sana.khan@example.com",
+    "phone": "+91-9876501005"
+  },
+  {
+    "id": "u6",
+    "name": "Nisha Patil",
+    "email": "nisha.patil@example.com",
+    "phone": "+91-9876501006"
+  },
+  {
+    "id": "u7",
+    "name": "Isha Kapoor",
+    "email": "isha.kapoor@example.com",
+    "phone": "+91-9876501007"
+  },
+  {
+    "id": "u8",
+    "name": "Ananya Das",
+    "email": "ananya.das@example.com",
+    "phone": "+91-9876501008"
+  },
+  {
+    "id": "u9",
+    "name": "Kavya Menon",
+    "email": "kavya.menon@example.com",
+    "phone": "+91-9876501009"
+  },
+  {
+    "id": "u10",
+    "name": "Diya Joshi",
+    "email": "diya.joshi@example.com",
+    "phone": "+91-9876501010"
+  }
+]

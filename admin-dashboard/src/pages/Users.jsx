@@ -12,7 +12,7 @@ export default function UsersPage() {
       try {
         const overview = await getAdminOverview();
         setUsers(overview.users);
-        setUserSource(overview.userSource);
+        setUserSource("backend");
       } catch (requestError) {
         setError(
           requestError.response?.data?.message || "Unable to load users.",

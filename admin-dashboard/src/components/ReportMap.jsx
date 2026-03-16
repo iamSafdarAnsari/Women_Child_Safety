@@ -13,11 +13,11 @@ const getCenter = (reports) => {
   }
 
   const latitudeTotal = reports.reduce(
-    (sum, report) => sum + report.location.latitude,
+    (sum, report) => sum + report.latitude,
     0,
   );
   const longitudeTotal = reports.reduce(
-    (sum, report) => sum + report.location.longitude,
+    (sum, report) => sum + report.longitude,
     0,
   );
 
@@ -39,10 +39,6 @@ export default function ReportMap({ reports = [] }) {
       scrollWheelZoom: false,
     }).setView([28.6139, 77.209], 11);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(mapRef.current);
-
     layerRef.current = L.layerGroup().addTo(mapRef.current);
 
     return () => {
@@ -61,8 +57,8 @@ export default function ReportMap({ reports = [] }) {
 
     const validReports = reports.filter(
       (report) =>
-        typeof report.location?.latitude === "number" &&
-        typeof report.location?.longitude === "number",
+        typeof report.latitude === "number" &&
+        typeof report.longitude === "number",
     );
 
     if (!validReports.length) {
@@ -73,8 +69,9 @@ export default function ReportMap({ reports = [] }) {
     const bounds = [];
 
     validReports.forEach((report) => {
-      const color = markerColors[report.type] || "#4a5568";
-      const coordinates = [report.location.latitude, report.location.longitude];
+      const normalizedType = String(report.type || "").replace(/_/g, " ");
+      const color = markerColors[normalizedType] || "#4a5568";
+      const coordinates = [report.latitude, report.longitude];
       bounds.push(coordinates);
 
       L.circleMarker(coordinates, {
@@ -86,9 +83,7 @@ export default function ReportMap({ reports = [] }) {
         fillOpacity: 0.9,
       })
         .bindPopup(
-          `<strong>${report.type}</strong><br/>${report.description}<br/>${
-            report.location.address || "No address provided"
-          }`,
+          `<strong>${normalizedType}</strong><br/>${report.description}<br/>Risk: ${report.riskLevel}`,
         )
         .addTo(layerRef.current);
     });

@@ -46,10 +46,10 @@ export default function AlertsPage() {
         {!error && alerts.length ? (
           <div className="list">
             {alerts.map((alert) => (
-              <div className="list-row" key={alert._id}>
+              <div className="list-row" key={alert.id}>
                 <div className="list-row-top">
                   <span className="row-title">
-                    {alert.userId?.name || "Unknown user"}
+                    {alert.userId || "Unknown user"}
                   </span>
                   <StatusBadge value={alert.status} />
                 </div>

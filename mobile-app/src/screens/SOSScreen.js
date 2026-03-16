@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import PanicButton from "../components/PanicButton";
+import { defaultBaseUrl, fetchUsers } from "../services/reportService";
 import { colors, screenStyles, spacing } from "../utils/theme";
 
 export default function SOSScreen() {
+  const [activeUserId, setActiveUserId] = useState("u1");
   const [statusMessage, setStatusMessage] = useState(
     "Press the panic button to share your current GPS location with the backend alert service.",
   );
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        const users = await fetchUsers();
+        if (users.length) {
+          setActiveUserId(users[0].id);
+        }
+      } catch (error) {
+        setStatusMessage(
+          `Using fallback user due to user fetch issue from ${defaultBaseUrl}/api/users`,
+        );
+      }
+    };
+
+    loadUsers();
+  }, []);
 
   return (
     <ScrollView
@@ -27,8 +46,8 @@ export default function SOSScreen() {
           SOS API, and confirms the result on screen.
         </Text>
         <PanicButton
-          apiBaseUrl="http://10.0.2.2:5000"
-          userId="REPLACE_WITH_LOGGED_IN_USER_ID"
+          apiBaseUrl={defaultBaseUrl}
+          userId={activeUserId}
           onSuccess={({ message, location }) => {
             setStatusMessage(
               `${message} Location: ${location.latitude.toFixed(5)}, ${location.longitude.toFixed(5)}`,

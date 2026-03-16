@@ -1,286 +1,130 @@
-# Women & Child Safety Platform
+﻿# Women & Child Safety Platform
 
-A full-stack safety platform with:
+A complete local demo project with three apps:
 
-- A Node.js + Express backend API
-- A React Native mobile app (Expo)
-- A React admin dashboard (Vite)
+- `backend` (Node.js + Express + local JSON data files)
+- `mobile-app` (React Native with Expo)
+- `admin-dashboard` (React + Vite + Leaflet)
 
-The platform helps users send SOS alerts, track journeys, report unsafe areas, and visualize risk through maps/heatmap views.
+This demo does not require MongoDB or any live database API. All records are stored in local JSON files under `backend/data`.
 
-## Project Overview
-
-The Women & Child Safety Platform is designed to improve personal safety and incident visibility through real-time and report-based tools.
-
-Core goals:
-
-- Provide a one-tap SOS flow with live GPS coordinates
-- Enable monitored journey tracking with overdue alert logic
-- Collect unsafe area reports (harassment, unsafe road, suspicious activity)
-- Surface incident patterns in map/heatmap views
-- Give admins a central dashboard for users, alerts, and reports
-
-## Technology Stack
-
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB + Mongoose
-- JWT authentication
-- bcryptjs for password hashing
-
-### Mobile App
-
-- React Native (Expo)
-- React Navigation (bottom tabs)
-- react-native-maps
-- expo-location
-- expo-notifications
-- axios
-
-### Admin Dashboard
-
-- React
-- Vite
-- React Router
-- Leaflet (OpenStreetMap tiles)
-- axios
-
-## Project Structure
+## Root Structure
 
 ```text
 Women  Child Safety/
-  backend/
-  mobile-app/
   admin-dashboard/
+  backend/
   docs/
+  mobile-app/
+  README.md
 ```
 
-## Installation Instructions
+## Backend Structure
 
-### Prerequisites
-
-- Node.js 18+
-- npm 9+
-- MongoDB instance (local or cloud)
-- Expo Go app (for physical mobile testing)
-
-### 1) Clone and open project
-
-```bash
-git clone <your-repo-url>
-cd "Women  Child Safety"
+```text
+backend/
+  data/
+    users.json
+    alerts.json
+    safetyReports.json
+    journeys.json
+    places.json
+  routes/
+    users.js
+    alerts.js
+    reports.js
+    journeys.js
+  utils/
+    fileHandler.js
+  server.js
 ```
 
-### 2) Install dependencies
-
-Backend:
-
-```bash
-cd backend
-npm install
-```
-
-Mobile app:
-
-```bash
-cd ../mobile-app
-npm install
-```
-
-Admin dashboard:
-
-```bash
-cd ../admin-dashboard
-npm install
-```
-
-## Environment Configuration
-
-### Backend .env
-
-Create `backend/.env` with:
-
-```env
-MONGO_URI=<your_mongodb_connection_string>
-JWT_SECRET=<your_jwt_secret>
-PORT=5000
-```
-
-### Admin dashboard (optional)
-
-To point dashboard API to a non-default backend URL, create `admin-dashboard/.env`:
-
-```env
-VITE_API_BASE_URL=http://localhost:5000
-```
-
-### Mobile app API base URL notes
-
-Current mobile implementation uses direct base URLs in source:
-
-- SOS screen: `http://10.0.2.2:5000` (Android emulator)
-- Heatmap report service:
-  - Android: `http://10.0.2.2:5000`
-  - Other platforms default: `http://localhost:5000`
-
-For real devices, replace with your machine LAN IP (for example `http://192.168.1.100:5000`).
-
-## How To Run Backend
-
-```bash
-cd backend
-npm run dev
-```
-
-Production mode:
-
-```bash
-npm start
-```
-
-Default API base URL:
-
-- `http://localhost:5000`
-
-Health check:
-
-- `GET /`
-
-## How To Run Mobile App
-
-```bash
-cd mobile-app
-npm start
-```
-
-Useful commands:
-
-```bash
-npm run android
-npm run ios
-npm run web
-```
-
-Notes:
-
-- Ensure backend is running before testing SOS, reports, and heatmap data.
-- In `src/screens/SOSScreen.js`, replace `REPLACE_WITH_LOGGED_IN_USER_ID` with an actual user ID after login integration.
-
-## How To Run Admin Dashboard
-
-```bash
-cd admin-dashboard
-npm run dev
-```
-
-Build for production:
-
-```bash
-npm run build
-npm run preview
-```
-
-Default dashboard URL:
-
-- `http://localhost:5173`
-
-## API Endpoints
+## Local API Endpoints
 
 Base URL: `http://localhost:5000`
 
-### Auth
-
-- `POST /api/auth/register`
-  - Body: `name`, `email`, `phone`, `password`
-- `POST /api/auth/login`
-  - Body: `email`, `password`
-
-### Alerts
-
+- `GET /api/users`
+- `GET /api/alerts`
 - `POST /api/alerts/sos`
-  - Body: `userId`, `latitude`, `longitude`, `triggerType`
-  - Allowed `triggerType`: `button`, `shake`, `voice`
-- `GET /api/alerts/history`
-
-### Journey (Protected: Bearer token required)
-
+- `GET /api/reports`
+- `GET /api/reports/heatmap`
+- `POST /api/reports/create`
 - `POST /api/journey/start`
-  - Body:
-    - `startLocation` (latitude, longitude, optional address)
-    - `destination` (string or object)
-    - `expectedArrival`
-    - optional `startTime`
-- `POST /api/journey/update`
-  - Body: `journeyId`, `location` (latitude, longitude, optional address)
-- `POST /api/journey/end`
-  - Body: `journeyId`, optional `endLocation`
+- `GET /api/journey/list`
 
-Behavior:
+## Demo Workflow
 
-- If expected arrival is exceeded during an ongoing journey, an automatic alert is created.
+1. User opens the mobile app.
+2. User presses SOS.
+3. Mobile app sends GPS location to `POST /api/alerts/sos`.
+4. Backend writes alert into `backend/data/alerts.json`.
+5. Admin dashboard loads latest alerts from `GET /api/alerts`.
+6. Reports and heatmap points are rendered from `safetyReports.json`.
 
-### Reports
+## Run Instructions
 
-- `POST /api/reports/create` (Protected: Bearer token required)
-  - Body: `type`, `location`, `description`
-  - Allowed `type`: `harassment`, `unsafe road`, `suspicious activity`
-  - `location` requires: `latitude`, `longitude`, optional `address`
-- `GET /api/reports/list`
+### 1) Backend
 
-## Project Features
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-### Authentication
+### 2) Mobile App
 
-- User registration and login with JWT
-- Password hashing using bcrypt
+```bash
+cd mobile-app
+npm install
+npx expo start
+```
 
-### SOS Safety
+### 3) Admin Dashboard
 
-- Large panic button in mobile app
-- GPS capture via Expo Location
-- SOS alert posting to backend
-- Confirmation/error feedback in-app
+```bash
+cd admin-dashboard
+npm install
+npm run dev
+```
 
-### Journey Tracking
+## Notes for Local Testing
 
-- Start, update, and end journey APIs
-- Ongoing location history support
-- Overdue journey alert trigger when expected arrival is exceeded
+- Android emulator base URL is already configured as `http://10.0.2.2:5000`.
+- iOS simulator / web uses `http://localhost:5000`.
+- For a physical phone, replace the API base URL in `mobile-app/src/services/reportService.js` with your machine LAN IP.
 
-### Unsafe Area Reporting
+## Sample Payloads
 
-- Category-based incident reporting
-- Structured geo coordinates for future analytics
-- Report listing with latest-first sorting
+### Send SOS
 
-### Heatmap and Mapping
+```json
+{
+  "userId": "u1",
+  "latitude": 28.6139,
+  "longitude": 77.2090,
+  "triggerType": "button"
+}
+```
 
-- Mobile heatmap screen reads `/api/reports/list`
-- Marker color coding by risk (green/yellow/red)
-- Marker tap displays report details
-- Admin dashboard Leaflet map visualizes unsafe reports
+### Create Safety Report
 
-### Admin Dashboard
+```json
+{
+  "type": "harassment",
+  "latitude": 28.6139,
+  "longitude": 77.2090,
+  "description": "Street harassment reported",
+  "riskLevel": "high"
+}
+```
 
-- Pages: Dashboard, Alerts, Reports, Users
-- KPI cards:
-  - Total users
-  - Active SOS alerts
-  - Reported unsafe locations
-- User list supports inferred totals from activity when dedicated admin users endpoint is unavailable
+### Start Journey
 
-## Current Notes
-
-- Backend currently has no dedicated `/api/admin/users` endpoint.
-- Admin dashboard falls back to inferred users from alert/report activity if that endpoint returns 404.
-- For production deployment, use secure environment variables, HTTPS, and robust auth/role controls for admin routes.
-
-## Suggested Next Improvements
-
-- Add role-based admin authorization on backend admin endpoints
-- Add dedicated analytics endpoints for dashboard KPIs
-- Add pagination/filtering for alerts and reports
-- Add push notification workflows for emergency contacts
-- Add CI/CD and automated test coverage
+```json
+{
+  "userId": "u1",
+  "startLocation": "Rajiv Chowk",
+  "destination": "India Gate",
+  "expectedArrival": "2026-03-16T19:30:00"
+}
+```

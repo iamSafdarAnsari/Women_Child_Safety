@@ -1,16 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
-
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const alertRoutes = require("./routes/alertRoutes");
-const journeyRoutes = require("./routes/journeyRoutes");
-const reportRoutes = require("./routes/reportRoutes");
-
-dotenv.config();
-
-connectDB();
+const userRoutes = require("./routes/users");
+const alertRoutes = require("./routes/alerts");
+const journeyRoutes = require("./routes/journeys");
+const reportRoutes = require("./routes/reports");
 
 const app = express();
 
@@ -20,11 +13,11 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Women & Child Safety Platform API is running",
+    message: "Women & Child Safety Platform local JSON API is running",
   });
 });
 
-app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/journey", journeyRoutes);
 app.use("/api/reports", reportRoutes);

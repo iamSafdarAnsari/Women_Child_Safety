@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {
+  Alert,
+  ActivityIndicator,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -7,14 +9,59 @@ import {
   TextInput,
   View,
 } from "react-native";
+import * as Location from "expo-location";
 
+import { createSafetyReport } from "../services/reportService";
 import { colors, radius, screenStyles, spacing } from "../utils/theme";
 
-const types = ["harassment", "unsafe road", "suspicious activity"];
+const types = ["harassment", "unsafe_road", "suspicious_activity", "theft"];
 
 export default function ReportScreen() {
   const [selectedType, setSelectedType] = useState(types[0]);
   const [description, setDescription] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!description.trim()) {
+      Alert.alert("Missing details", "Please provide incident details.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const permission = await Location.requestForegroundPermissionsAsync();
+      if (permission.status !== "granted") {
+        Alert.alert("Permission needed", "Location permission is required.");
+        return;
+      }
+
+      const position = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.High,
+      });
+
+      await createSafetyReport({
+        type: selectedType,
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        description: description.trim(),
+        riskLevel:
+          selectedType === "harassment" || selectedType === "theft"
+            ? "high"
+            : "medium",
+      });
+
+      setDescription("");
+      Alert.alert("Submitted", "Unsafe area report has been saved.");
+    } catch (error) {
+      Alert.alert(
+        "Submission failed",
+        error.response?.data?.message || "Unable to create report.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <ScrollView
@@ -44,7 +91,7 @@ export default function ReportScreen() {
                     active && styles.typeChipTextActive,
                   ]}
                 >
-                  {type}
+                  {type.replace(/_/g, " ")}
                 </Text>
               </Pressable>
             );
@@ -64,9 +111,14 @@ export default function ReportScreen() {
 
         <Pressable
           style={[screenStyles.button, styles.inputSpacing]}
-          onPress={() => {}}
+          onPress={handleSubmit}
+          disabled={isSubmitting}
         >
-          <Text style={screenStyles.buttonText}>Submit Report</Text>
+          {isSubmitting ? (
+            <ActivityIndicator color="#ffffff" />
+          ) : (
+            <Text style={screenStyles.buttonText}>Submit Report</Text>
+          )}
         </Pressable>
       </View>
     </ScrollView>

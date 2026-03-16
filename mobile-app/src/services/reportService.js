@@ -9,10 +9,51 @@ const apiClient = axios.create({
   timeout: 10000,
 });
 
+export const fetchUsers = async () => {
+  const response = await apiClient.get("/api/users");
+  return response.data?.users || [];
+};
+
 export const fetchSafetyReports = async () => {
-  const response = await apiClient.get("/api/reports/list");
+  const response = await apiClient.get("/api/reports");
 
   return response.data?.reports || [];
 };
 
-export { defaultBaseUrl };
+export const fetchHeatmapReports = async () => {
+  const response = await apiClient.get("/api/reports/heatmap");
+
+  return response.data?.heatmap || [];
+};
+
+export const createSafetyReport = async (payload) => {
+  const response = await apiClient.post("/api/reports/create", payload);
+
+  return response.data?.report;
+};
+
+export const sendSosAlert = async (payload) => {
+  const response = await apiClient.post("/api/alerts/sos", payload);
+
+  return response.data?.alert;
+};
+
+export const fetchAlerts = async () => {
+  const response = await apiClient.get("/api/alerts");
+
+  return response.data?.alerts || [];
+};
+
+export const startJourney = async (payload) => {
+  const response = await apiClient.post("/api/journey/start", payload);
+
+  return response.data?.journey;
+};
+
+export const fetchJourneys = async () => {
+  const response = await apiClient.get("/api/journey/list");
+
+  return response.data?.journeys || [];
+};
+
+export { apiClient, defaultBaseUrl };

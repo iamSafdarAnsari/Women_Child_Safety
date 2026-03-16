@@ -1,34 +1,27 @@
-import React from "react";
-import { ScrollView, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, ScrollView, Text } from "react-native";
 
 import AlertCard from "../components/AlertCard";
+import { fetchAlerts } from "../services/reportService";
 import { screenStyles } from "../utils/theme";
 
-const alerts = [
-  {
-    id: "1",
-    title: "SOS Triggered",
-    timestamp: "Today, 4:20 PM",
-    status: "Active",
-    details: "Emergency alert sent with live coordinates to selected contacts.",
-  },
-  {
-    id: "2",
-    title: "Journey Overdue",
-    timestamp: "Yesterday, 8:05 PM",
-    status: "Monitoring",
-    details: "Expected arrival was exceeded and an overdue alert was created.",
-  },
-  {
-    id: "3",
-    title: "Unsafe Area Report Logged",
-    timestamp: "Mar 12, 6:45 PM",
-    status: "Resolved",
-    details: "Suspicious activity report was saved for safety map analysis.",
-  },
-];
-
 export default function AlertHistoryScreen() {
+  const [alerts, setAlerts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadAlerts = async () => {
+      try {
+        const data = await fetchAlerts();
+        setAlerts(data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAlerts();
+  }, []);
+
   return (
     <ScrollView
       style={screenStyles.container}
@@ -40,9 +33,20 @@ export default function AlertHistoryScreen() {
         warnings.
       </Text>
 
-      {alerts.map((alert) => (
-        <AlertCard key={alert.id} {...alert} />
-      ))}
+      {loading ? <ActivityIndicator size="large" /> : null}
+
+      {!loading
+        ? alerts.map((alert) => (
+            <AlertCard
+              key={alert.id}
+              id={alert.id}
+              title={`${alert.triggerType} SOS`}
+              timestamp={new Date(alert.timestamp).toLocaleString()}
+              status={alert.status}
+              details={`User ${alert.userId} at ${alert.latitude.toFixed(5)}, ${alert.longitude.toFixed(5)}`}
+            />
+          ))
+        : null}
     </ScrollView>
   );
 }
